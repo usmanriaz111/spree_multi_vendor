@@ -7,7 +7,7 @@ module Spree
         params[:q] = {name_cont: params[:keywords]}
         @q = Spree::Vendor.ransack(params[:q])
         @stores = @q.result(distinct: true).approved
-
+        @keywords = params[:keywords]
         @available_products = params[:available_products].present? ? params[:available_products] : false
         @available_stores = true
         @available_categories = params[:available_categories].present? ? params[:available_categories] : false
