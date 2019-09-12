@@ -14,6 +14,9 @@ module Spree
         create_line_items(vendor_order, variants.map(&:id))
         vendor_order.create_proposed_shipments
         vendor_order.update_with_updater!
+        vendor_order.shipment_total=0
+        vendor_order.updater.update_order_total
+        vendor_order.updater.persist_totals
       end
     end
 
